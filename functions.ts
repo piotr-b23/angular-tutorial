@@ -21,3 +21,9 @@ return num1 + num2 + num3.reduce((a,b)=> a + b, 2);
 
 let numbers = [1,2,3];
 console.log(add2(2,3));
+
+function getItems<placeHolder>(items: placeHolder[]): placeHolder[]{
+    return new Array<placeHolder>().concat(items);
+}
+
+let concatResult = getItems([1,2,3,4,5]);
