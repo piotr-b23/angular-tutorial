@@ -19,3 +19,4 @@ function getItems(items) {
     return new Array().concat(items);
 }
 let concatResult = getItems([1, 2, 3, 4, 5]);
+//# sourceMappingURL=functions.js.map

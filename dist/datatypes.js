@@ -28,3 +28,4 @@ console.log(swapNumbs[1]);
 let departament;
 departament = "IT";
 departament = 10;
+//# sourceMappingURL=datatypes.js.map
