@@ -2,7 +2,8 @@
 
 <div [hidden]="hideRooms">
   Numer of rooms:
-  <div [innerText]="numberOfRooms"></div>
+  <div [ngStyle]="{'color': rooms.availableRooms ? 'green' : 'red'}"
+     [innerText]="numberOfRooms"></div>
 </div>
 
 <div *ngIf="rooms.availableRooms > 3">
@@ -17,7 +18,9 @@
       <th>Photos</th>
       <th>Checkin time</th>
     </tr>
-    <tr *ngFor="let room of roomlist; let e = even; let o = odd; let i = index">
+    <tr
+     [ngClass]="e ? 'even' : 'odd'"  
+     *ngFor="let room of roomlist; let e = even; let o = odd; let i = index">
       <td>{{ e ? "Even" : "Odd" }}</td>
       <td>{{i+1}}</td>
       <td>{{ room.roomType }}</td>
