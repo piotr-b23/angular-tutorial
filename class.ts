@@ -1,4 +1,7 @@
-class Employee {
+import { Login } from './interface';
+import { User } from './interface';
+
+class Employee implements Login{
 #id : number;
 protected name : string;
 address: string;
@@ -13,6 +16,9 @@ constructor(id: number, name: string, address: string) {
     this.address = address;
 
 }
+    Login(): User {
+        return {name: "John", id: 1, email: "samplemail"};
+    }
 
 getNameWithAddress() : string{
 return this.name + " " + this.address;

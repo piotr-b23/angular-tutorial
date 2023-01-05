@@ -11,6 +11,7 @@ var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (
     return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
 };
 var _Employee_id;
+Object.defineProperty(exports, "__esModule", { value: true });
 class Employee {
     static getEmployeeCount() {
         return 50;
@@ -20,6 +21,9 @@ class Employee {
         __classPrivateFieldSet(this, _Employee_id, id, "f");
         this.name = name;
         this.address = address;
+    }
+    Login() {
+        return { name: "John", id: 1, email: "samplemail" };
     }
     getNameWithAddress() {
         return this.name + " " + this.address;
