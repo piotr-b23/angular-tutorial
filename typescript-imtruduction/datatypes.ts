@@ -4,7 +4,6 @@ fname = "John";
 
 let newname = fname.toUpperCase();
 
-console.log(newname);
 
 let age: number;
 
@@ -16,7 +15,7 @@ let result = parseInt(dob);
 
 let isValid : boolean = false;
 
-console.log(isValid);
+
 
 let empList : string[];
 
@@ -30,9 +29,6 @@ let resultArray = depList.filter((x)=> x>13);
 
 let sum = depList.reduce((acc, num) => acc + num);
 
-console.log(resultArray);
-
-console.log(sum);
 
 const enum Color {
     Red,
@@ -53,7 +49,7 @@ function swapNumbers(num1 : number, num2 : number) : [number,number]{
 
 swapNumbs = swapNumbers(10,20);
 
-console.log(swapNumbs[1]);
+
 
 let departament : any;
 

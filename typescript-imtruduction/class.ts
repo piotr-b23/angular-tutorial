@@ -1,5 +1,5 @@
-import { Login } from '../interface';
-import { User } from '../interface';
+import { Login } from './interface';
+import { User } from './interface';
 
 class Employee implements Login{
 #id : number;
@@ -52,13 +52,5 @@ let john = new Employee(1,"John","Highway 71");
 
 let mike = new Menager(2,"Mike","Sunny 23");
 
-
-
-console.log(john);
-console.log(john.getNameWithAddress());
-console.log(john.getNameWithAddress2());
-console.log(mike.getNameWithAddress2());
-
 john.empId = 100;
 
-console.log(john.empId);
