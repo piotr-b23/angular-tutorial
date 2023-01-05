@@ -6,9 +6,11 @@
      [innerText]="numberOfRooms"></div>
 </div>
 
+
+
 <div *ngIf="rooms.availableRooms > 3">
   Rooms List:
-  <table>
+  <table [hidden]="hideRooms">
     <tr>
       <th>Even/odd</th>
       <th>Index</th>
@@ -20,14 +22,14 @@
     </tr>
     <tr
      [ngClass]="e ? 'even' : 'odd'"  
-     *ngFor="let room of roomlist; let e = even; let o = odd; let i = index">
+     *ngFor="let room of roomlist | slice : 1:2; let e = even; let o = odd; let i = index">
       <td>{{ e ? "Even" : "Odd" }}</td>
-      <td>{{i+1}}</td>
+      <td>{{i+1 }}</td>
       <td>{{ room.roomType }}</td>
-      <td>{{ room.amenities }}</td>
-      <td>{{ room.price }}</td>
+      <td>{{ room.amenities | titlecase }}</td>
+      <td>{{ room.price | currency :'EUR'}}</td>
       <td>{{ room.photos }}</td>
-      <td>{{ room.checkinTime }}</td>
+      <td>{{ room.checkinTime | date : 'dd/MM/YYYY'}}</td>
     </tr>
   </table>
 </div>
