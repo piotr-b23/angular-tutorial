@@ -1,8 +1,32 @@
-<h1>Welcome to {{hotelName}}</h1>
+<h1>Welcome to {{ hotelName }}</h1>
 
 <div [hidden]="hideRooms">
-    Numer of rooms:
-    <div [innerText]="numberOfRooms"></div>
+  Numer of rooms:
+  <div [innerText]="numberOfRooms"></div>
+</div>
+
+<div *ngIf="rooms.availableRooms > 3">
+  Rooms List:
+  <table>
+    <tr>
+      <th>Even/odd</th>
+      <th>Index</th>
+      <th>Room Type</th>
+      <th>Amenities</th>
+      <th>Price</th>
+      <th>Photos</th>
+      <th>Checkin time</th>
+    </tr>
+    <tr *ngFor="let room of roomlist; let e = even; let o = odd; let i = index">
+      <td>{{ e ? "Even" : "Odd" }}</td>
+      <td>{{i+1}}</td>
+      <td>{{ room.roomType }}</td>
+      <td>{{ room.amenities }}</td>
+      <td>{{ room.price }}</td>
+      <td>{{ room.photos }}</td>
+      <td>{{ room.checkinTime }}</td>
+    </tr>
+  </table>
 </div>
 
 <button (click)="toggle()">Toggle</button>
