@@ -1,4 +1,4 @@
-Rooms List:
+<h2>{{title}}</h2>
 <table class="table">
   <tr>
     <th>Even/odd</th>
@@ -14,7 +14,7 @@ Rooms List:
   </tr>
   <tr
    [ngClass]="e ? 'even' : 'odd'"  
-   *ngFor="let room of rooms | slice : 0:5; let e = even; let o = odd; let i = index">
+   *ngFor="let room of rooms | slice : 0:10; let e = even; let o = odd; let i = index">
     <td>{{ e ? "Even" : "Odd" }}</td>
     <td>{{i+1 }}</td>
     <td>{{ room.roomType }}</td>

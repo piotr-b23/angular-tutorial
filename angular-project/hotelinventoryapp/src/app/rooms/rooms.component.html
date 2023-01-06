@@ -13,13 +13,18 @@
   {{ selectedRoom |json}}
 </div>
 
+<div>
+  <button (click)="addRoom()">
+    Add room
+  </button>
+</div>
+
 
 <div *ngIf="
-  rooms.availableRooms
->
-  3">
+  rooms.availableRooms>3">
   <hinv-rooms-list
     [rooms]="roomlist"
+    [title]="title"
     (selectedRoom)="selectRoom($event)"
   ></hinv-rooms-list>
 </div>
