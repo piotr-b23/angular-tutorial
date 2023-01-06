@@ -1,4 +1,5 @@
-import { Component, DoCheck, OnInit } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, DoCheck, OnInit, ViewChild } from '@angular/core';
+import { HeaderComponent } from '../header/header.component';
 import { Room, RoomList } from './rooms';
 
 @Component({
@@ -6,7 +7,15 @@ import { Room, RoomList } from './rooms';
   templateUrl: './rooms.component.html',
   styleUrls: ['./rooms.component.scss'],
 })
-export class RoomsComponent implements DoCheck, OnInit {
+export class RoomsComponent implements DoCheck, OnInit, AfterViewInit, AfterViewChecked {
+  
+  ngAfterViewChecked(): void {
+    throw new Error('Method not implemented.');
+  }
+
+  ngAfterViewInit(): void {
+    this.headerComponent.title = "Rooms View";
+  }
   ngDoCheck(): void {
     console.log('on changes is called');
   }
@@ -25,6 +34,8 @@ export class RoomsComponent implements DoCheck, OnInit {
   };
 
   roomlist: RoomList[] = [];
+
+  @ViewChild(HeaderComponent) headerComponent!: HeaderComponent;
 
   toggle() {
     this.hideRooms = !this.hideRooms;
@@ -51,6 +62,7 @@ export class RoomsComponent implements DoCheck, OnInit {
   }
 
   ngOnInit() {
+   // console.log(this.headerComponent);
     this.roomlist = [
       {
         roomType: 'Deluxe Room',
