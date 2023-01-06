@@ -1,4 +1,5 @@
-import { AfterContentInit, Component, OnInit } from '@angular/core';
+import { AfterContentInit, Component, ContentChild, OnInit } from '@angular/core';
+import { EmployeeComponent } from '../employee/employee.component';
 
 @Component({
   selector: 'hinv-container',
@@ -7,9 +8,12 @@ import { AfterContentInit, Component, OnInit } from '@angular/core';
 })
 export class ContainerComponent implements OnInit, AfterContentInit {
 
+  @ContentChild(EmployeeComponent) employee!: EmployeeComponent;
+
 
 
   ngAfterContentInit(): void {
+    this.employee.empName = 'Jack';
 
   }
   ngOnInit(): void {

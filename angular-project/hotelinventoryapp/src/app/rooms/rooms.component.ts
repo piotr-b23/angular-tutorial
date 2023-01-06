@@ -1,4 +1,4 @@
-import { AfterViewChecked, AfterViewInit, Component, DoCheck, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, DoCheck, OnDestroy, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import { Room, RoomList } from './rooms';
 
@@ -7,10 +7,14 @@ import { Room, RoomList } from './rooms';
   templateUrl: './rooms.component.html',
   styleUrls: ['./rooms.component.scss'],
 })
-export class RoomsComponent implements DoCheck, OnInit, AfterViewInit, AfterViewChecked {
+export class RoomsComponent implements DoCheck, OnInit, AfterViewInit, AfterViewChecked, OnDestroy {
+  ngOnDestroy(): void {
+    console.log('on destroy is called');
+   
+  }
   
   ngAfterViewChecked(): void {
-    throw new Error('Method not implemented.');
+    
   }
 
   ngAfterViewInit(): void {
