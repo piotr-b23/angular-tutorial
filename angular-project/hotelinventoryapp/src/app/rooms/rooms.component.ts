@@ -6,6 +6,7 @@ import {
   OnDestroy,
   OnInit,
   QueryList,
+  SkipSelf,
   ViewChild,
   ViewChildren,
 } from '@angular/core';
@@ -21,7 +22,7 @@ import { RoomsService } from './services/rooms.service';
 export class RoomsComponent
   implements DoCheck, OnInit, AfterViewInit, AfterViewChecked, OnDestroy
 {
-  constructor(private roomsService: RoomsService) {}
+  constructor(@SkipSelf() private roomsService: RoomsService) {}
 
   ngOnDestroy(): void {
     console.log('on destroy is called');
