@@ -34,7 +34,7 @@ export class RoomsService {
 
   constructor(@Inject(APP_SERVICE_CONFIG) private config: AppConfig) {
     console.log(this.config.apiEndpoint);
-    console.log("Room service Initilized....");
+    console.log("Room service Initilized....")
   }
 
   getRooms() {
