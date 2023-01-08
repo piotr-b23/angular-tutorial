@@ -1,24 +1,34 @@
-import { Component } from '@angular/core';
+import { outputAst } from '@angular/compiler';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { Task } from '../../task';
 
 @Component({
   selector: 'app-add-task',
   templateUrl: './add-task.component.html',
-  styleUrls: ['./add-task.component.scss']
+  styleUrls: ['./add-task.component.scss'],
 })
 export class AddTaskComponent {
-  text?: string;
-  day?: string;
+  @Output() onAddTask: EventEmitter<Task> = new EventEmitter();
+  text!: string;
+  day!: string;
   reminder: boolean = false;
 
   onSubmit() {
-    if(!this.text) {
-      alert('Please add a task')};
+    if (!this.text) {
+      alert('Please add a task!');
       return;
-  }
-  readonly newTask = {
-    text: this.text,
-    day: this.day,
-    reminder: this.reminder
-  };
+    }
 
+    const newTask: Task = {
+      text: this.text,
+      day: this.day,
+      reminder: this.reminder,
+    };
+
+    this.onAddTask.emit(newTask);
+
+    this.text = '';
+    this.day = '';
+    this.reminder = false;
+  }
 }
