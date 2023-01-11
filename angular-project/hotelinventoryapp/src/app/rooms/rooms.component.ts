@@ -10,6 +10,7 @@ import {
   ViewChild,
   ViewChildren,
 } from '@angular/core';
+import { Observable } from 'rxjs';
 import { HeaderComponent } from '../header/header.component';
 import { Room, RoomList } from './rooms';
 import { RoomsService } from './services/rooms.service';
@@ -54,6 +55,14 @@ export class RoomsComponent
 
   roomlist: RoomList[] = [];
 
+  stream = new Observable(observer =>{
+    observer.next('user1');
+    observer.next('user2');
+    observer.next('user3');
+    observer.complete();
+  //  observer.error('error');
+  });
+
   @ViewChild(HeaderComponent) headerComponent!: HeaderComponent;
 
   @ViewChildren(HeaderComponent)
@@ -83,6 +92,7 @@ export class RoomsComponent
   }
 
   ngOnInit():void {
+    this.stream.subscribe((data)=>console.log(data));
     this.roomlist = this.roomsService.getRooms();
   }
 }
