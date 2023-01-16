@@ -7,16 +7,42 @@
 >
   Add Server
 </button>
-<p>{{ serverCreationStatus }}</p>
-<app-server></app-server>
-<app-server></app-server>
+<!-- <p>{{ serverCreationStatus }}</p> -->
+
+<p *ngIf="serverCreated">Server was created, server name is {{ serverName }}</p>
+
+<!-- <ng-template #noServer>
+  <p>No server was created!</p>
+</ng-template> -->
+
+
 
 <label>The username is: {{ username }} </label>
-<input type="text" class="form-control" [(ngModel)]="username" (input)="chceckIsEmpty()"/>
+<input
+  type="text"
+  class="form-control"
+  [(ngModel)]="username"
+  (input)="chceckIsEmpty()"
+/>
 <button
   class="btn btn-primary"
   [disabled]="isEmptyUsername"
   (click)="resetUserName()"
 >
   Click to reset username.
+</button><br>
+
+
+<button
+  class="btn btn-primary"
+  (click)="buttonClicked = true; recordClick();"
+>
+  Display details.
 </button>
+<p *ngIf="buttonClicked">Secret password is tuna</p>
+<p *ngFor="let date of clickRecord;let indexOfElement=index;" 
+[ngStyle]="{backgroundColor: getColor(indexOfElement)}"
+[ngClass]="{morethanfive: isBiggerThanFive(indexOfElement)}"
+>{{date}}</p>
+
+<app-server *ngFor="let server of servers"></app-server>

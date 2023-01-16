@@ -11,6 +11,11 @@ export class ServersComponent {
   serverName: String = 'Testserver';
   username: String = '';
   isEmptyUsername: boolean = true;
+  serverCreated: boolean = false;
+  servers: Array<String>= ['Testserver 1', 'Testserver 2', 'Testserver 3'];
+  buttonClicked = false;
+
+  clickRecord: Array<String> = [];
 
   constructor() {
     setTimeout(() => {
@@ -20,6 +25,8 @@ export class ServersComponent {
 
   onCreateServer() {
     this.serverCreationStatus = "server was created! Name is " + this.serverName;
+    this.servers.push(this.serverName);
+    this.serverCreated = true;
   }
 
   onUpdateServerName(event : Event){
@@ -35,6 +42,21 @@ export class ServersComponent {
   chceckIsEmpty() :void {
     if(this.username) this.isEmptyUsername = false;
     else this.isEmptyUsername = true;
+  }
+
+  recordClick() : void {
+    console.log(Date.now().toString());
+    this.clickRecord.push(Date.now().toString());
+  }
+
+  isBiggerThanFive(input: Number) : boolean {
+  if (input > 3) return true;
+  else return false;
+  }
+
+  getColor(input: Number) : string {
+    if (input > 3) return 'blue';
+    else return 'none';
   }
 
 }
