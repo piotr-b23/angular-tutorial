@@ -8,7 +8,9 @@ import { Component } from '@angular/core';
 export class ServersComponent {
   allowNewServer: boolean = false;
   serverCreationStatus: string = "No server was created";
-  serverName: String = '';
+  serverName: String = 'Testserver';
+  username: String = '';
+  isEmptyUsername: boolean = true;
 
   constructor() {
     setTimeout(() => {
@@ -17,11 +19,22 @@ export class ServersComponent {
   }
 
   onCreateServer() {
-    this.serverCreationStatus = "server was created";
+    this.serverCreationStatus = "server was created! Name is " + this.serverName;
   }
 
   onUpdateServerName(event : Event){
     this.serverName = (<HTMLInputElement>event.target).value;
 
   }
+
+  resetUserName(): void {
+    this.username = '';
+    this.isEmptyUsername = true;
+  }
+
+  chceckIsEmpty() :void {
+    if(this.username) this.isEmptyUsername = false;
+    else this.isEmptyUsername = true;
+  }
+
 }
