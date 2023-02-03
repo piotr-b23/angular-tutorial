@@ -39,5 +39,9 @@ export class RecipeService {
 
   }
 
+  getRecipe(id: number) {
+    return this.recipes[id];
+  }
+
   constructor(private slService: ShoppingListService) {}
 }
