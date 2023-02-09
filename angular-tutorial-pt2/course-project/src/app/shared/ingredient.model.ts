@@ -1,9 +1,9 @@
 export class Ingredient {
     public name: string;
-    public ammount: number;
+    public amount: number;
 
     constructor(name: string, ammount: number) {
         this.name = name;
-        this.ammount = ammount;
+        this.amount = ammount;
     }
 }
