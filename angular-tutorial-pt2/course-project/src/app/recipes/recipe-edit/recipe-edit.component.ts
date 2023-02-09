@@ -41,8 +41,8 @@ export class RecipeEditComponent implements OnInit{
         for (let ingredient of recipe.ingredients){
           recipeIngredients.push(
             new FormGroup({
-              'name': new FormControl(ingredient.name),
-              'amount': new FormControl(ingredient.amount)
+              'name': new FormControl(ingredient.name, Validators.required),
+              'amount': new FormControl(ingredient.amount, [Validators.required,Validators.pattern(/^[1-9]+[0-9]*$/)])
             })
           )
         }
@@ -54,6 +54,15 @@ export class RecipeEditComponent implements OnInit{
       'descirption' : new FormControl(recipeDescription, Validators.required),
       'ingredients': recipeIngredients
     });
+  }
+
+  onAddIngredient(){
+    (<FormArray>this.recipeForm.get('ingredients')).push(
+      new FormGroup({
+        'name': new FormControl(null,Validators.required),
+        'amount': new FormControl(null,[Validators.required,Validators.pattern(/^[1-9]+[0-9]*$/)])
+      })
+    )
   }
 
   onSubmit() {
