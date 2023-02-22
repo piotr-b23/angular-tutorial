@@ -9,27 +9,28 @@ import { Recipe } from './recipe.model';
 })
 export class RecipeService {
   recipesChanged = new Subject<Recipe[]>();
+  private recipes: Array<Recipe> = [];
 
-  private recipes: Array<Recipe> = [
-    new Recipe(
-      'A Test Recipe 1',
-      'This is simply a test 1',
-      'https://media-cldnry.s-nbcnews.com/image/upload/t_fit-1240w,f_auto,q_auto:best/newscms/2021_32/1759222/ratatouille-mc-main-210809-v2.jpeg',
-      [new Ingredient('Meat', 1), new Ingredient('French Fries', 20)]
-    ),
-    new Recipe(
-      'A Test Recipe 2',
-      'This is simply a test 2',
-      'https://media-cldnry.s-nbcnews.com/image/upload/t_fit-1240w,f_auto,q_auto:best/newscms/2021_32/1759222/ratatouille-mc-main-210809-v2.jpeg',
-      [new Ingredient('Buns', 2), new Ingredient('French Fries', 25)]
-    ),
-    new Recipe(
-      'A Test Recipe 3',
-      'This is simply a test 3',
-      'https://media-cldnry.s-nbcnews.com/image/upload/t_fit-1240w,f_auto,q_auto:best/newscms/2021_32/1759222/ratatouille-mc-main-210809-v2.jpeg',
-      [new Ingredient('Meat', 3), new Ingredient('French Fries', 123)]
-    ),
-  ];
+  // private recipes: Array<Recipe> = [
+  //   new Recipe(
+  //     'A Test Recipe 1',
+  //     'This is simply a test 1',
+  //     'https://media-cldnry.s-nbcnews.com/image/upload/t_fit-1240w,f_auto,q_auto:best/newscms/2021_32/1759222/ratatouille-mc-main-210809-v2.jpeg',
+  //     [new Ingredient('Meat', 1), new Ingredient('French Fries', 20)]
+  //   ),
+  //   new Recipe(
+  //     'A Test Recipe 2',
+  //     'This is simply a test 2',
+  //     'https://media-cldnry.s-nbcnews.com/image/upload/t_fit-1240w,f_auto,q_auto:best/newscms/2021_32/1759222/ratatouille-mc-main-210809-v2.jpeg',
+  //     [new Ingredient('Buns', 2), new Ingredient('French Fries', 25)]
+  //   ),
+  //   new Recipe(
+  //     'A Test Recipe 3',
+  //     'This is simply a test 3',
+  //     'https://media-cldnry.s-nbcnews.com/image/upload/t_fit-1240w,f_auto,q_auto:best/newscms/2021_32/1759222/ratatouille-mc-main-210809-v2.jpeg',
+  //     [new Ingredient('Meat', 3), new Ingredient('French Fries', 123)]
+  //   ),
+  // ];
 
   getRecipes() {
     return this.recipes.slice();
@@ -57,6 +58,11 @@ export class RecipeService {
 
   recipeDelete(index: number) {
     this.recipes.splice(index, 1);
+    this.recipesChanged.next(this.recipes.slice());
+  }
+
+  setRecipes(recipes: Recipe[]){
+    this.recipes = recipes;
     this.recipesChanged.next(this.recipes.slice());
   }
 
