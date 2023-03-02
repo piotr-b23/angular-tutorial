@@ -4,21 +4,22 @@ import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { KeyModel } from './key.model';
 
-interface AuthResponseData {
+export interface AuthResponseData {
 idToken:	string;
 email:	string;
 refreshToken:	string;
 expiresIn:	string;
 localId:	string;
-registered:	boolean;
+registered?:	boolean;
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  
   signup(email: string, password: string){
-    let key = new KeyModel();
+    const key = new KeyModel();
     return this.http.post<AuthResponseData>(key.signupKey, {
       email: email,
       password: password,
@@ -37,5 +38,16 @@ export class AuthService {
       return throwError(()=> new Error(errorMessage));
     }))
   }
+
+  login(email: string, password: string){
+    const key = new KeyModel();
+    return this.http.post<AuthResponseData>(key.singInKey,{
+      email: email,
+      password: password,
+      returnSecureToken: true
+    })
+  }
+
+
   constructor(private http: HttpClient) { }
 }
