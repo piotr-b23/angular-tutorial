@@ -1,0 +1,25 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+
+interface AuthResponseData {
+idToken:	string;
+email:	string;
+refreshToken:	string;
+expiresIn:	string;
+localId:	string;
+registered:	boolean;
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthService {
+  signup(email: string, password: string){
+    return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAfSnru7CrSXOkw1TyXeDmkox_EfaSaNrM', {
+      email: email,
+      password: password,
+      returnSecureToken: true
+    })
+  }
+  constructor(private http: HttpClient) { }
+}
