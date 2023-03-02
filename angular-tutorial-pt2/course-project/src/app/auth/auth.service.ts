@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { KeyModel } from './key.model';
 
 interface AuthResponseData {
 idToken:	string;
@@ -15,7 +16,8 @@ registered:	boolean;
 })
 export class AuthService {
   signup(email: string, password: string){
-    return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAfSnru7CrSXOkw1TyXeDmkox_EfaSaNrM', {
+    let key = new KeyModel();
+    return this.http.post<AuthResponseData>(key.signupKey, {
       email: email,
       password: password,
       returnSecureToken: true
